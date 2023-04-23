@@ -1,26 +1,16 @@
 package it.uniroma3.diadia.ambienti;
 
+import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-
-/**
- * Questa classe modella il labirinto.
- * Ha il compito di creare tutto il labirinto dove si svolge il gioco.
- * @version base
- */
 
 public class Labirinto {
 	
 	private Stanza stanzaIniziale;
 	private Stanza stanzaVincente;
 	
-	
-	/**
-     * Costruttore della classe Labirinto.
-     * Ha il compito di invocare il metodo creaStanze() per la creazione delle
-     * stanze del labirinto.
-     */
 	public Labirinto(){
-		
+	
 		creaStanze();
 		
 	}
@@ -36,8 +26,8 @@ public class Labirinto {
     	
 		/* crea stanze del labirinto */
 		Stanza atrio = new Stanza("Atrio");
-		Stanza aulaN11 = new Stanza("Aula N11");
-		Stanza aulaN10 = new Stanza("Aula N10");
+		Stanza aulaN11 = new StanzaBloccata("Aula N11", "est", "chiave");
+		Stanza aulaN10 = new StanzaBuia("Aula N10","lanterna");
 		Stanza laboratorio = new Stanza("Laboratorio Campus");
 		Stanza biblioteca = new Stanza("Biblioteca");
 		
@@ -56,29 +46,22 @@ public class Labirinto {
 		biblioteca.impostaStanzaAdiacente("sud", atrio);
 
         /* pone gli attrezzi nelle stanze */
+		//aulaN11.addAttrezzo(new Attrezzo("chiave",1));
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 
 		// il gioco comincia nell'atrio
-        stanzaIniziale = atrio;
+        stanzaIniziale = atrio;  
 		stanzaVincente = biblioteca;
 		
     }
 	
-	/**
-     * Restituisce il riferimento all'oggetto variabile d'istanza stanzaVincente.
-     * @return il riferimento all'oggetto stanzaVincente
-     */
 	public Stanza getStanzaVincente() {
 		return stanzaVincente;
 	}
 	
-	/**
-     * Restituisce il riferimento all'oggetto variabile d'istanza stanzaIniziale.
-     * @return il riferimento all'oggetto stanzaIniziale
-     */
 	public Stanza getStanzaIniziale() {
-		return this.stanzaIniziale;
+		return stanzaIniziale;
 	}
 
 }

@@ -19,8 +19,8 @@ class TestGiocatore {
 	@Test
 	void testGetCFU() {
 		
-		assertEquals(20,giocatore.getCfu());
-	
+		assertEquals(20, giocatore.getCfu());
+		
 	}
 	
 	@Test
@@ -28,7 +28,7 @@ class TestGiocatore {
 		
 		giocatore.setCfu(19);
 		assertEquals(19,giocatore.getCfu());
-	
+		
 	}
 
 }

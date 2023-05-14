@@ -7,17 +7,17 @@ public class StanzaMagica extends Stanza{
 	final static private int SOGLIA_MAGICA_DEFAULT = 3;
 	private int contatoreAttrezziPosati;
 	private int sogliaMagica;
-	
+
 	public StanzaMagica(String nome) {
 		this(nome, SOGLIA_MAGICA_DEFAULT);
 	}
-	
+
 	public StanzaMagica(String nome, int soglia) {
 		super(nome);
 		this.contatoreAttrezziPosati = 0;
 		this.sogliaMagica = soglia;
 	}
-	
+
 	@Override
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 
@@ -28,7 +28,7 @@ public class StanzaMagica extends Stanza{
 
 
 	}
-	
+
 	private Attrezzo modificaAttrezzo(Attrezzo attrezzo) {
 
 		StringBuilder nomeInvertito;

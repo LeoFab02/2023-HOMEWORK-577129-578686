@@ -7,9 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.*;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class TestComandoPosa {
+	
+	private LabirintoBuilder lb;
 	
 	private Partita partita;
 	private ComandoPosa posa;
@@ -18,7 +22,14 @@ class TestComandoPosa {
 	@BeforeEach
 	void setUp(){
 		
-		partita = new Partita();
+		lb = new LabirintoBuilder();
+		Labirinto l = lb
+				.addStanzaIniziale("Atrio")
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.getLabirinto();
+		
+		partita = new Partita(l);
 		console = new IOConsole();
 		posa = new ComandoPosa(console);
 		
@@ -37,11 +48,16 @@ class TestComandoPosa {
 	@Test
 	void testNonPosaStanzaPiena() {
 		
-		for(int i=0;i<9;i++) {
-			
-			partita.getStanzaCorrente().addAttrezzo(new Attrezzo("lanterna",1));
-			
-		}
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("A",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("B",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("C",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("D",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("E",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("F",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("G",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("H",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("I",2));
+		partita.getStanzaCorrente().addAttrezzo(new Attrezzo("J",2));
 		
 		partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("martello",1));
 		posa.setParametro("martello");

@@ -7,9 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.*;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class TestComandoPrendi {
+	
+	private LabirintoBuilder lb;
 	
 	private Partita partita;
 	private IO console;
@@ -18,7 +22,15 @@ class TestComandoPrendi {
 	@BeforeEach
 	void setUp(){
 		
-		partita = new Partita();
+		lb = new LabirintoBuilder();
+		Labirinto l = lb
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("osso", 1)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.getLabirinto();
+		
+		partita = new Partita(l);
 		console = new IOConsole();
 		prendi = new ComandoPrendi(console);
 		
@@ -35,11 +47,18 @@ class TestComandoPrendi {
 	}
 	
 	@Test
-	void testPrendiBorsaPiena() {
+    public void TestNonPrendiAttrezzo() {
+        prendi.setParametro("lanterna");
+        prendi.esegui(partita);
+        assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("lanterna"));
+    }
+	
+	@Test
+	void testStanzaSenzaAttrezzi() {
 		
-		for(int i=0;i<10;i++) {
-			partita.getGiocatore().getBorsa().addAttrezzo(new Attrezzo("lanterna",1));
-		}
+		Attrezzo osso = new Attrezzo("osso",1);
+		
+		partita.getStanzaCorrente().removeAttrezzo(osso);
 		
 		prendi.setParametro("osso");
 		prendi.esegui(partita);

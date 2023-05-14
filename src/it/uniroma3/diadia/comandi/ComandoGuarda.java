@@ -1,7 +1,9 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
+import java.util.*;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoGuarda implements Comando{
 	
@@ -18,7 +20,11 @@ public class ComandoGuarda implements Comando{
 	public void esegui(Partita partita) {
 		
 		console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-		console.mostraMessaggio(partita.getGiocatore().getBorsa().toString());
+		
+	
+		console.mostraMessaggio("Contenuto Borsa: " + partita.getGiocatore().getBorsa().getContenutoRaggruppatoPerPeso().toString());
+		//console.mostraMessaggio(partita.getGiocatore().getBorsa().getContenutoRaggruppatoPerPeso().toString());
+
 		console.mostraMessaggio("CFU: " + partita.getGiocatore().getCfu());
 		
 	}

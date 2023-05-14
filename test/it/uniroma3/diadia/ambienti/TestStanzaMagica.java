@@ -39,9 +39,16 @@ class TestStanzaMagica {
 	@Test
 	void testAddAttrezzoStanzaPiena() {
 
-		for(int i=0;i<s.getAttrezzi().length;i++) {
-			s.addAttrezzo(new Attrezzo("Martello",2));
-		}
+		s.addAttrezzo(new Attrezzo("A",2));
+		s.addAttrezzo(new Attrezzo("B",2));
+		s.addAttrezzo(new Attrezzo("C",2));
+		s.addAttrezzo(new Attrezzo("D",2));
+		s.addAttrezzo(new Attrezzo("E",2));
+		s.addAttrezzo(new Attrezzo("F",2));
+		s.addAttrezzo(new Attrezzo("G",2));
+		s.addAttrezzo(new Attrezzo("H",2));
+		s.addAttrezzo(new Attrezzo("I",2));
+		s.addAttrezzo(new Attrezzo("J",2));
 
 		assertFalse(s.addAttrezzo(new Attrezzo("Spada",3)));
 

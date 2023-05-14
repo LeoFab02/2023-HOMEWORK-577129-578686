@@ -2,6 +2,9 @@ package it.uniroma3.diadia.giocatore;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.SortedSet;
+import java.util.Iterator;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,17 +26,6 @@ class TestBorsa {
 		
 		assertTrue(borsa.addAttrezzo(new Attrezzo("Spada",3)));
 	
-	}
-	
-	@Test
-	void testAddAttrezzoBorsaPiena() {
-		
-		for(int i=0;i<10;i++) {
-			borsa.addAttrezzo(new Attrezzo("Martello",2));
-		}
-		
-		assertFalse(borsa.addAttrezzo(new Attrezzo("Spada",3)));
-		
 	}
 	
 	@Test
@@ -106,6 +98,20 @@ class TestBorsa {
 		
 		borsa.addAttrezzo(new Attrezzo("Martello",2));
 		assertFalse(borsa.isEmpty());
+		
+	}
+	
+	@Test
+	void testGetSortedTestOrdinatoPerNome() {
+		
+		borsa.addAttrezzo(new Attrezzo("piuma",1));
+		borsa.addAttrezzo(new Attrezzo("osso",1));
+		
+		SortedSet<Attrezzo> s = borsa.getSortedSetOrdinatoPerPeso();
+		Iterator<Attrezzo> it = s.iterator();
+				
+		assertEquals("osso", it.next().getNome());
+		assertEquals("piuma", it.next().getNome());
 		
 	}
 

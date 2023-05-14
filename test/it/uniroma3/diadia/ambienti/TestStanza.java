@@ -1,5 +1,4 @@
 package it.uniroma3.diadia.ambienti;
-import it.uniroma3.diadia.ambienti.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,9 +75,16 @@ class TestStanza {
 	@Test
 	void testAddAttrezzoStanzaPiena() {
 
-		for(int i=0;i<stanza.getAttrezzi().length;i++) {
-			stanza.addAttrezzo(new Attrezzo("Martello",2));
-		}
+		stanza.addAttrezzo(new Attrezzo("A",2));
+		stanza.addAttrezzo(new Attrezzo("B",2));
+		stanza.addAttrezzo(new Attrezzo("C",2));
+		stanza.addAttrezzo(new Attrezzo("D",2));
+		stanza.addAttrezzo(new Attrezzo("E",2));
+		stanza.addAttrezzo(new Attrezzo("F",2));
+		stanza.addAttrezzo(new Attrezzo("G",2));
+		stanza.addAttrezzo(new Attrezzo("H",2));
+		stanza.addAttrezzo(new Attrezzo("I",2));
+		stanza.addAttrezzo(new Attrezzo("J",2));
 
 		assertFalse(stanza.addAttrezzo(new Attrezzo("Spada",3)));
 
@@ -106,6 +112,5 @@ class TestStanza {
 		assertFalse(stanza.removeAttrezzo(stanza.getAttrezzo("Martello")));
 
 	}
-
 
 }

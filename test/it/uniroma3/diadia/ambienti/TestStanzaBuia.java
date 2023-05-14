@@ -10,29 +10,125 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 class TestStanzaBuia {
 	
 	private Attrezzo lanterna;
-	private StanzaBuia atrio;
+	private StanzaBuia stanza;
 
 	@BeforeEach
 	void setUp(){
 		
 		lanterna = new Attrezzo("lanterna",3);
-		atrio = new StanzaBuia("Atrio","lanterna");
+		stanza= new StanzaBuia("Atrio","lanterna");
 		
 	}
 	
 	@Test
 	void testDescrizioneOggettoPresente() {
 		
-		atrio.addAttrezzo(lanterna);
-		assertEquals(atrio.toString(), atrio.getDescrizione());
+		stanza.addAttrezzo(lanterna);
+		assertEquals(stanza.toString(), stanza.getDescrizione());
 		
 	}
 
 	@Test
 	void testDescrizioneOggettoNonPresente() {
 
-		assertEquals("c'e' un buio pesto qui\n", atrio.getDescrizione());
+		assertEquals("c'e' un buio pesto qui\n", stanza.getDescrizione());
 		
+	}
+	
+	@Test
+	void testImpostaStanzaAdiacenteGiusto() {
+
+		stanza.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
+		assertEquals( "prova2" , stanza.getStanzaAdiacente("nord").getNome() );
+
+	}
+
+	@Test
+	void testImpostaStanzaAdiacenteSbagliato() {
+
+
+		stanza.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
+		assertFalse(stanza.getStanzaAdiacente("nord").getNome().equals("prova1") );
+
+	}
+
+	@Test
+	void testImpostaStanzaAdiacenteNessunaStanzaInserita() {
+
+		stanza.impostaStanzaAdiacente( "nord" , null );
+		assertNull(stanza.getStanzaAdiacente("nord"));
+
+	}
+
+	@Test
+	void testHasAttrezzoEsistente() {
+
+		stanza.addAttrezzo(new Attrezzo("Martello",3));
+		assertTrue(stanza.hasAttrezzo("Martello"));
+
+	}
+
+	@Test
+	void testHasAttrezzoNonEsistente() {
+
+		stanza.addAttrezzo(new Attrezzo("Martello",3));
+		assertFalse(stanza.hasAttrezzo("Spada"));
+
+	}
+
+	@Test
+	void testHasAttrezzoStanzaSenzaAttrezzi() {
+
+		assertFalse(stanza.hasAttrezzo("Spada"));
+
+	}
+
+	@Test
+	void testAddAttrezzoStanzaVuota() {
+
+		assertTrue(stanza.addAttrezzo(new Attrezzo("Martello",3)));
+
+	}
+
+	@Test
+	void testAddAttrezzoStanzaPiena() {
+
+		stanza.addAttrezzo(new Attrezzo("A",2));
+		stanza.addAttrezzo(new Attrezzo("B",2));
+		stanza.addAttrezzo(new Attrezzo("C",2));
+		stanza.addAttrezzo(new Attrezzo("D",2));
+		stanza.addAttrezzo(new Attrezzo("E",2));
+		stanza.addAttrezzo(new Attrezzo("F",2));
+		stanza.addAttrezzo(new Attrezzo("G",2));
+		stanza.addAttrezzo(new Attrezzo("H",2));
+		stanza.addAttrezzo(new Attrezzo("I",2));
+		stanza.addAttrezzo(new Attrezzo("J",2));
+
+		assertFalse(stanza.addAttrezzo(new Attrezzo("Spada",3)));
+
+	}
+
+	@Test
+	void testRemoveAttrezzoEsistente() {
+
+		stanza.addAttrezzo(new Attrezzo("Spada",2));
+		assertTrue(stanza.removeAttrezzo(stanza.getAttrezzo("Spada")));
+
+	}
+
+	@Test
+	void testRemoveAttrezzoNonEsistente() {
+
+		stanza.addAttrezzo(new Attrezzo("Spada",2));
+		assertFalse(stanza.removeAttrezzo(stanza.getAttrezzo("Martello")));
+
+	}
+
+	@Test
+	void testRemoveAttrezzoStanzaSenzaAttrezzi() {
+
+		assertFalse(stanza.removeAttrezzo(stanza.getAttrezzo("Martello")));
+
 	}
 
 }

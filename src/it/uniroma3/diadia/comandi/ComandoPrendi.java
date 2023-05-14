@@ -27,7 +27,7 @@ public class ComandoPrendi implements Comando{
 		//Controlli sulla stanza e sulla borsa
 
 		//Stanza senza oggetti
-		if(partita.getStanzaCorrente().getAttrezzi()[0] == null) {
+		if(partita.getStanzaCorrente().getAttrezzi().size() == 0) {
 
 			console.mostraMessaggio("Non ci sono attrezzi da prendere nella stanza!");
 

@@ -40,6 +40,7 @@ public class ComandoVai implements Comando{
 
 		}
 
+		
 		console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		console.mostraMessaggio("Borsa:");
 		console.mostraMessaggio(partita.getGiocatore().getBorsa().toString());

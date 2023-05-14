@@ -30,6 +30,15 @@ public class DiaDia {
 
 	private Partita partita;
 	private IO console;
+	private Labirinto labirinto;
+	
+	public DiaDia(Labirinto l, IO console) {
+		
+		this.labirinto = l;
+		this.partita = new Partita(labirinto);
+		this.console = console;
+		
+	}
 
 	public DiaDia(IO console) {
 		this.partita = new Partita();
@@ -40,7 +49,7 @@ public class DiaDia {
 
 		String istruzione; 
 
-		console.mostraMessaggio(MESSAGGIO_BENVENUTO);
+		console.mostraMessaggio(getMessaggioBenvenuto());
 
 		do		
 			istruzione = console.leggiRiga();
@@ -72,9 +81,29 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}  	
 
+	public static String getMessaggioBenvenuto() {
+		return MESSAGGIO_BENVENUTO;
+	}
+
 	public static void main(String[] argc) {
+		
+		Labirinto labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio").addAttrezzo("osso", 1)
+				.addStanzaVincente("Biblioteca")
+				.addStanza("N11")
+				.addStanzaBuia("N10","lanterna").addAttrezzo("lanterna", 3)
+				.addStanza("Laboratorio Campus")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Atrio", "N11", "est")
+				.addAdiacenza("Atrio", "N10", "sud")
+				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
+				.addAdiacenza("N11", "Atrio", "ovest")
+				.addAdiacenza("N10", "Atrio", "nord")
+				.addAdiacenza("Laboratorio Campus", "Atrio", "est")
+				.getLabirinto();
+		
 		IO console = new IOConsole();
-		DiaDia gioco = new DiaDia(console);
+		DiaDia gioco = new DiaDia(labirinto, console);
 		gioco.gioca();
 	}
 }

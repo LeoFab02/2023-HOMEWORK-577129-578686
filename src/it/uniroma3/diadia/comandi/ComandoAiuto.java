@@ -39,4 +39,8 @@ public class ComandoAiuto implements Comando{
 		return this.parametro;
 	}
 	
+	public static String[] getElencoComandi() {
+		return elencoComandi;
+	}
+	
 }

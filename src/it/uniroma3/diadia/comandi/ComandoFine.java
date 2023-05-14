@@ -36,5 +36,9 @@ public class ComandoFine implements Comando {
 	public String getParametro() {
 		return this.parametro;
 	}
+	
+	public static String messaggioFine() {
+		return "Grazie di aver giocato!";
+	}
 
 }

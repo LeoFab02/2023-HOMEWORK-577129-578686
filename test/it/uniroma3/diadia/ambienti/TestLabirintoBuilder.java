@@ -2,7 +2,11 @@ package it.uniroma3.diadia.ambienti;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
 
+import it.uniroma3.diadia.FormatoFileNonValidoException;
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
+import it.uniroma3.diadia.attrezzi.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +15,7 @@ class TestLabirintoBuilder {
 	private LabirintoBuilder lb;
 
 	@BeforeEach
-	void setUp(){
+	void setUp() throws FileNotFoundException, FormatoFileNonValidoException{
 	
 		lb = new LabirintoBuilder();
 		
@@ -47,7 +51,7 @@ class TestLabirintoBuilder {
 	@Test
 	void testAddStanzaBloccata() {
 		
-		lb.addStanzaBloccata("Cantina", "est", "Chiave");
+		lb.addStanzaBloccata("Cantina", Direzione.est, "Chiave");
 		
 		assertEquals("Cantina", lb.getUltimaStanza().getNome());
 		
@@ -87,9 +91,9 @@ class TestLabirintoBuilder {
 		lb.addStanza("N11");
 		lb.addStanza("N12");
 		
-		lb.addAdiacenza("N12", "N11", "nord");
+		lb.addAdiacenza("N12", "N11", Direzione.nord);
 		
-		assertEquals("N11", lb.getUltimaStanza().getStanzaAdiacente("nord").getNome());
+		assertEquals("N11", lb.getUltimaStanza().getStanzaAdiacente(Direzione.nord).getNome());
 		
 	}
 

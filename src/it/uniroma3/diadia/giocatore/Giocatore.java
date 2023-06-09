@@ -1,16 +1,20 @@
 package it.uniroma3.diadia.giocatore;
 
-public class Giocatore {
-	
-	static final private int CFU_INIZIALI = 20;
+import it.uniroma3.diadia.attrezzi.*;
+
+import java.io.IOException;
+
+import it.uniroma3.diadia.ConfigurazioneProperties;
+
+public class Giocatore{
 	
 	private int cfu;
 	private Borsa borsa;
 	
-	public Giocatore() {
+	public Giocatore() throws IOException {
 		
 		borsa = new Borsa();
-		this.cfu = CFU_INIZIALI;
+		this.cfu = ConfigurazioneProperties.getCFU();
 		
 	}
 	

@@ -57,8 +57,8 @@ class TestStanzaMagica {
 	@Test
 	void testImpostaStanzaAdiacenteGiusto() {
 
-		s.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertEquals( "prova2" , s.getStanzaAdiacente("nord").getNome() );
+		s.impostaStanzaAdiacente( Direzione.nord , new Stanza("prova2") );
+		assertEquals( "prova2" , s.getStanzaAdiacente(Direzione.nord).getNome() );
 
 	}
 
@@ -66,16 +66,16 @@ class TestStanzaMagica {
 	void testImpostaStanzaAdiacenteSbagliato() {
 
 
-		s.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertFalse(s.getStanzaAdiacente("nord").getNome().equals("prova1") );
+		s.impostaStanzaAdiacente( Direzione.nord , new Stanza("prova2") );
+		assertFalse(s.getStanzaAdiacente(Direzione.nord).getNome().equals("prova1") );
 
 	}
 
 	@Test
 	void testImpostaStanzaAdiacenteNessunaStanzaInserita() {
 
-		s.impostaStanzaAdiacente( "nord" , null );
-		assertNull(s.getStanzaAdiacente("nord"));
+		s.impostaStanzaAdiacente( Direzione.nord , null );
+		assertNull(s.getStanzaAdiacente(Direzione.nord));
 
 	}
 	

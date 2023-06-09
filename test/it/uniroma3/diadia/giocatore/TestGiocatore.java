@@ -2,6 +2,8 @@ package it.uniroma3.diadia.giocatore;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,7 @@ class TestGiocatore {
 	private Giocatore giocatore;
 
 	@BeforeEach
-	void setUp(){
+	void setUp() throws IOException{
 		
 		giocatore = new Giocatore();
 		

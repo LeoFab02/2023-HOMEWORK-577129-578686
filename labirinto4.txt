@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca,Bagno,Studio
+Buia:
+Bloccata:  
+Magica:
+Inizio:Atrio
+Vincente:Biblioteca
+Mago:
+Strega:
+Cane:
+Attrezzi:seghetto 3 Atrio
+Uscite:Atrio nord Biblioteca,Biblioteca sud Atrio,Bagno sud Atrio,Atrio nord Bagno,Studio est Atrio,Atrio ovest Studio

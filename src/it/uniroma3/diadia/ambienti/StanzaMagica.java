@@ -40,4 +40,13 @@ public class StanzaMagica extends Stanza{
 
 	}
 
+	/*public boolean isMagica() {
+
+		if(contatoreAttrezziPosati < sogliaMagica) {
+			return false;
+		}else {
+			return true;
+		}
+	}*/
+
 }

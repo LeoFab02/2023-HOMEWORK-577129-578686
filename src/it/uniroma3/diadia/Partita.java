@@ -1,5 +1,8 @@
 package it.uniroma3.diadia;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.giocatore.*;
 
@@ -18,7 +21,7 @@ public class Partita {
 	private Stanza stanzaCorrente;
 	private boolean finita;
 	
-	public Partita(Labirinto l) {
+	public Partita(Labirinto l) throws IOException {
 		
 		labirinto = l;
 		this.stanzaCorrente = labirinto.getStanzaIniziale();
@@ -27,14 +30,14 @@ public class Partita {
 		
 	}
 	
-	public Partita(){
+	/*public Partita() throws FileNotFoundException, FormatoFileNonValidoException{
 		
-		labirinto = new Labirinto();
+		labirinto = new Labirinto("labirinto1.txt");
 		this.stanzaCorrente = labirinto.getStanzaIniziale();
 		giocatore = new Giocatore();
 		this.finita = false;
 		
-	}
+	}*/
 	
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta

@@ -7,12 +7,6 @@ public class ComandoPrendi implements Comando{
 	
 	private IO console;
 	private String attrezzo;
-	
-	public ComandoPrendi(IO console) {
-		
-		this.console = console;
-		
-	}
 
 	@Override
 	public void esegui(Partita partita) {
@@ -70,6 +64,11 @@ public class ComandoPrendi implements Comando{
 	@Override
 	public String getParametro() {
 		return this.attrezzo;
+	}
+	
+	@Override
+	public void setConsole(IO console) {
+		this.console = console;
 	}
 
 }

@@ -38,8 +38,8 @@ class TestStanzaBuia {
 	@Test
 	void testImpostaStanzaAdiacenteGiusto() {
 
-		stanza.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertEquals( "prova2" , stanza.getStanzaAdiacente("nord").getNome() );
+		stanza.impostaStanzaAdiacente( Direzione.nord , new Stanza("prova2") );
+		assertEquals( "prova2" , stanza.getStanzaAdiacente(Direzione.nord).getNome() );
 
 	}
 
@@ -47,16 +47,16 @@ class TestStanzaBuia {
 	void testImpostaStanzaAdiacenteSbagliato() {
 
 
-		stanza.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertFalse(stanza.getStanzaAdiacente("nord").getNome().equals("prova1") );
+		stanza.impostaStanzaAdiacente( Direzione.nord , new Stanza("prova2") );
+		assertFalse(stanza.getStanzaAdiacente(Direzione.nord).getNome().equals("prova1") );
 
 	}
 
 	@Test
 	void testImpostaStanzaAdiacenteNessunaStanzaInserita() {
 
-		stanza.impostaStanzaAdiacente( "nord" , null );
-		assertNull(stanza.getStanzaAdiacente("nord"));
+		stanza.impostaStanzaAdiacente( Direzione.nord , null );
+		assertNull(stanza.getStanzaAdiacente(Direzione.nord));
 
 	}
 

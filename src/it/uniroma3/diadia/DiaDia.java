@@ -1,8 +1,12 @@
 package it.uniroma3.diadia;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.*;
+import java.util.Scanner;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -31,21 +35,21 @@ public class DiaDia {
 	private Partita partita;
 	private IO console;
 	private Labirinto labirinto;
-	
-	public DiaDia(Labirinto l, IO console) {
-		
+
+	public DiaDia(Labirinto l, IO console) throws IOException {
+
 		this.labirinto = l;
 		this.partita = new Partita(labirinto);
 		this.console = console;
-		
+
 	}
 
-	public DiaDia(IO console) {
+	/*public DiaDia(IO console) throws FileNotFoundException, FormatoFileNonValidoException {
 		this.partita = new Partita();
 		this.console = console;
-	}
+	}*/
 
-	public void gioca() {
+	public void gioca() throws Exception {
 
 		String istruzione; 
 
@@ -62,18 +66,19 @@ public class DiaDia {
 	 * Processa una istruzione 
 	 *
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
+	 * @throws Exception 
 	 */
-	private boolean processaIstruzione(String istruzione) {
+	private boolean processaIstruzione(String istruzione) throws Exception {
 
 		Comando comandoDaEseguire;
-		
-		FabbricaDiComandiFisarmonica factory = new FabbricaDiComandiFisarmonica(console);
-		
+
+		FabbricaDiComandiRiflessiva factory = new FabbricaDiComandiRiflessiva(console);
+
 		comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(this.partita);
 		if (this.partita.vinta())
 			console.mostraMessaggio("Hai vinto!");
-		
+
 		if (!this.partita.giocatoreisVivo())
 
 			console.mostraMessaggio("Hai esaurito i CFU...");
@@ -85,25 +90,22 @@ public class DiaDia {
 		return MESSAGGIO_BENVENUTO;
 	}
 
-	public static void main(String[] argc) {
-		
-		Labirinto labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("Atrio").addAttrezzo("osso", 1)
+	public static void main(String[] argc) throws Exception {
+
+		/*Labirinto labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
 				.addStanzaVincente("Biblioteca")
-				.addStanza("N11")
-				.addStanzaBuia("N10","lanterna").addAttrezzo("lanterna", 3)
-				.addStanza("Laboratorio Campus")
 				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Atrio", "N11", "est")
-				.addAdiacenza("Atrio", "N10", "sud")
-				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
-				.addAdiacenza("N11", "Atrio", "ovest")
-				.addAdiacenza("N10", "Atrio", "nord")
-				.addAdiacenza("Laboratorio Campus", "Atrio", "est")
-				.getLabirinto();
-		
-		IO console = new IOConsole();
-		DiaDia gioco = new DiaDia(labirinto, console);
-		gioco.gioca();
+				.getLabirinto();*/
+
+		//Scanner scanner = new Scanner(System.in);
+		try(Scanner scanner = new Scanner(System.in)){
+			
+			Labirinto labirinto = Labirinto.newBuilder("labirinto1.txt").getLabirinto();
+			IO console = new IOConsole(scanner);
+			DiaDia gioco = new DiaDia(labirinto, console);
+			gioco.gioca();
+
+		}
 	}
 }

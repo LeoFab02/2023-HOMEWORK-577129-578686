@@ -17,7 +17,7 @@ public class StanzaProtected{
 	protected String nome;
 	
 	protected Map<String,Attrezzo> attrezzi;
-	protected Map<String,Stanza> stanzeAdiacenti;
+	protected Map<Direzione, StanzaProtected> stanzeAdiacenti;
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -25,7 +25,7 @@ public class StanzaProtected{
 	 */
 	public StanzaProtected(String nome) {
 		this.nome = nome;
-		this.stanzeAdiacenti = new HashMap<String,Stanza>(NUMERO_MASSIMO_DIREZIONI);
+		this.stanzeAdiacenti = new HashMap<Direzione,StanzaProtected>(NUMERO_MASSIMO_DIREZIONI);
 		this.attrezzi = new HashMap<String,Attrezzo>(NUMERO_MASSIMO_ATTREZZI);
 		}
 
@@ -35,7 +35,7 @@ public class StanzaProtected{
 	 * @param direzione direzione in cui sara' posta la stanza adiacente.
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
-	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
+	public void impostaStanzaAdiacente(Direzione direzione, StanzaProtected stanza) {
 		
 		stanzeAdiacenti.put(direzione, stanza);
 		
@@ -45,7 +45,7 @@ public class StanzaProtected{
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
 	 */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public StanzaProtected getStanzaAdiacente(Direzione direzione) {
 		
 		return stanzeAdiacenti.get(direzione);
 	}
@@ -104,10 +104,10 @@ public class StanzaProtected{
 
 		risultato.append("\nUscite: ");
 
-		String direzione;
+		Direzione direzione;
 		
-		Set<String> direzioni = stanzeAdiacenti.keySet();
-		Iterator<String> it1 = direzioni.iterator();
+		Set<Direzione> direzioni = stanzeAdiacenti.keySet();
+		Iterator<Direzione> it1 = direzioni.iterator();
 
 		for (int i=0; i<stanzeAdiacenti.size();i++) {
 
@@ -179,7 +179,7 @@ public class StanzaProtected{
 	}
 
 
-	public Set<String> getDirezioni() {
+	public Set<Direzione> getDirezioni() {
 		
 		return stanzeAdiacenti.keySet();
 		

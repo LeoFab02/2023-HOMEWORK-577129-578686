@@ -3,14 +3,9 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.IO;
 
-public class ComandoFine implements Comando {
+public class ComandoFine extends AbstractComando {
 	
 	private IO console;
-	private String parametro;
-	
-	public ComandoFine(IO console) {
-		this.console = console;
-	}
 	
 	@Override
 	public void esegui(Partita partita) {
@@ -21,24 +16,17 @@ public class ComandoFine implements Comando {
 	}
 	
 	@Override
-	public void setParametro(String parametro) {
-		
-		this.parametro = parametro;
-		
-	}
-	
-	@Override
 	public String getNome() {
 		return "fine";
 	}
 	
-	@Override
-	public String getParametro() {
-		return this.parametro;
-	}
-	
 	public static String messaggioFine() {
 		return "Grazie di aver giocato!";
+	}
+	
+	@Override
+	public void setConsole(IO console) {
+		this.console = console;
 	}
 
 }

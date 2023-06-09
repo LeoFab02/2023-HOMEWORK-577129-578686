@@ -5,16 +5,9 @@ import java.util.*;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoGuarda implements Comando{
-	
-	private String parametro;
+public class ComandoGuarda extends AbstractComando{
+
 	private IO console;
-	
-	public ComandoGuarda(IO console) {
-		
-		this.console = console;
-		
-	}
 	
 	@Override
 	public void esegui(Partita partita) {
@@ -23,16 +16,9 @@ public class ComandoGuarda implements Comando{
 		
 	
 		console.mostraMessaggio("Contenuto Borsa: " + partita.getGiocatore().getBorsa().getContenutoRaggruppatoPerPeso().toString());
-		//console.mostraMessaggio(partita.getGiocatore().getBorsa().getContenutoRaggruppatoPerPeso().toString());
-
+		
+		
 		console.mostraMessaggio("CFU: " + partita.getGiocatore().getCfu());
-		
-	}
-	
-	@Override
-	public void setParametro(String parametro) {
-		
-		this.parametro = parametro;
 		
 	}
 	
@@ -42,8 +28,8 @@ public class ComandoGuarda implements Comando{
 	}
 	
 	@Override
-	public String getParametro() {
-		return this.parametro;
+	public void setConsole(IO console) {
+		this.console = console;
 	}
 
 }

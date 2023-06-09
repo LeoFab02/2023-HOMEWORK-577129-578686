@@ -2,9 +2,10 @@ package it.uniroma3.diadia;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class IOSimulator implements IO{
-
+		
 	private List<String> righeLette;
 	private int indiceRigheLette;
 	private List<String> messaggiProdotti;
@@ -20,14 +21,14 @@ public class IOSimulator implements IO{
 
 	@Override
 	public String leggiRiga() {
-
+		
 		String riga = null;
 
 		riga = this.righeLette.get(indiceRigheLette);
 		this.indiceRigheLette++;
-
+		
 		return riga;
-
+		
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class IOSimulator implements IO{
 	}
 
 	public String nextMessaggio() {
-
+		
 		String next = this.messaggiProdotti.get(indiceMessaggiMostrati);
 		this.indiceMessaggiMostrati++;
 		return next;
@@ -46,7 +47,7 @@ public class IOSimulator implements IO{
 	public boolean hasNextMessaggio() {
 		return this.indiceMessaggiMostrati < this.indiceMessaggiProdotti;
 	}
-
+	
 	public List<String> getMessaggiProdotti() {
 		return messaggiProdotti;
 	}
@@ -54,5 +55,5 @@ public class IOSimulator implements IO{
 	public void setMessaggiProdotti(List<String> messaggiProdotti) {
 		this.messaggiProdotti = messaggiProdotti;
 	}
-
+	
 }

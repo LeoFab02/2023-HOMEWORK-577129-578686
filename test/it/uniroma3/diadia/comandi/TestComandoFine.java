@@ -4,33 +4,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.IOSimulator;
-import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.fixture.Fixture;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestComandoFine {
 
 	List<String> righeDaLeggere;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		/*righeDaLeggere = new ArrayList<>();
-		righeDaLeggere.add("fine");*/
+		righeDaLeggere = new ArrayList<>();
 	}
 
 	@Test
-	public void testPartitaConComandoFine() {
-
-		righeDaLeggere = new ArrayList<>();
+	public void testPartitaConComandoFine() throws Exception {
 		righeDaLeggere.add("fine");
 
-		IOSimulator io = Fixture.creaSimulazionePartitaEGiocaFacile(righeDaLeggere);
+		IOSimulator io = Fixture.creaSimulazionePartitaEGiocaEasy(righeDaLeggere);
 		assertTrue(io.hasNextMessaggio());
 		assertEquals(DiaDia.getMessaggioBenvenuto(), io.nextMessaggio());
 		assertTrue(io.hasNextMessaggio());

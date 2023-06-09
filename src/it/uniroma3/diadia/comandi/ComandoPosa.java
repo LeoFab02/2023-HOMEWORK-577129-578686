@@ -9,12 +9,6 @@ public class ComandoPosa implements Comando{
 	private IO console;
 	private String attrezzo;
 
-	public ComandoPosa(IO console) {
-
-		this.console = console;
-
-	}
-
 	@Override
 	public void esegui(Partita partita) {
 
@@ -73,6 +67,11 @@ public class ComandoPosa implements Comando{
 	@Override
 	public String getParametro() {
 		return this.attrezzo;
+	}
+	
+	@Override
+	public void setConsole(IO console) {
+		this.console = console;
 	}
 
 }

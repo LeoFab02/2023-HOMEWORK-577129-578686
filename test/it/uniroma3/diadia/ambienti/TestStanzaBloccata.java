@@ -18,10 +18,10 @@ class TestStanzaBloccata {
 		
 		chiave = new Attrezzo("chiave",1);
 		
-		s = new StanzaBloccata("stanza","est","chiave");
+		s = new StanzaBloccata("stanza",Direzione.est,"chiave");
 		stanzaAdiacente = new Stanza("stanzaAdiacente");
 		
-		s.impostaStanzaAdiacente("est",stanzaAdiacente);
+		s.impostaStanzaAdiacente(Direzione.est,stanzaAdiacente);
 		
 		
 	}
@@ -30,14 +30,14 @@ class TestStanzaBloccata {
 	void testDirezioneNonBloccata() {
 		
 		s.addAttrezzo(chiave);
-		assertEquals(stanzaAdiacente, s.getStanzaAdiacente("est"));
+		assertEquals(stanzaAdiacente, s.getStanzaAdiacente(Direzione.est));
 		
 	}
 	
 	@Test
 	void testDirezioneBloccata() {
 		
-		assertEquals(s, s.getStanzaAdiacente("est"));
+		assertEquals(s, s.getStanzaAdiacente(Direzione.est));
 		
 	}
 	
@@ -62,8 +62,8 @@ class TestStanzaBloccata {
 	@Test
 	void testImpostaStanzaAdiacenteGiustoSenzaAttrezzoSbloccante() {
 
-		s.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertNotEquals( "prova2" , s.getStanzaAdiacente("nord").getNome() );
+		s.impostaStanzaAdiacente( Direzione.est , new Stanza("prova2") );
+		assertNotEquals( "prova2" , s.getStanzaAdiacente(Direzione.est).getNome() );
 
 	}
 	
@@ -71,8 +71,8 @@ class TestStanzaBloccata {
 	void testImpostaStanzaAdiacenteGiustoConAttrezzoSbloccante() {
 
 		s.addAttrezzo(new Attrezzo("chiave",1));
-		s.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertEquals( "prova2" , s.getStanzaAdiacente("nord").getNome() );
+		s.impostaStanzaAdiacente( Direzione.nord , new Stanza("prova2") );
+		assertEquals( "prova2" , s.getStanzaAdiacente(Direzione.nord).getNome() );
 
 	}
 
@@ -80,8 +80,8 @@ class TestStanzaBloccata {
 	void testImpostaStanzaAdiacenteSbagliato() {
 
 
-		s.impostaStanzaAdiacente( "nord" , new Stanza("prova2") );
-		assertFalse(s.getStanzaAdiacente("nord").getNome().equals("prova1"));
+		s.impostaStanzaAdiacente( Direzione.nord , new Stanza("prova2") );
+		assertFalse(s.getStanzaAdiacente(Direzione.nord).getNome().equals("prova1"));
 
 	}
 	
